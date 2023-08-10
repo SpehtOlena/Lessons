@@ -1,0 +1,18 @@
+.card {
+	width: 300px;
+	background-color: #c7f1ce;
+	border: 1px solid #0c3615;
+	padding: 20px;
+	border-radius: 15px;
+}
+
+.card h3 {
+	font-weight: 800;
+	font-size: 38px;
+	color: #98d310;
+}
+
+.card p {
+	font-size: 24px;
+	color: #1d1c1c;
+}

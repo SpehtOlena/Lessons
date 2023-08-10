@@ -1,0 +1,21 @@
+.Menu {
+	width: 100%;
+	background-color: #fff;
+	min-height: 400px;
+}
+
+
+.Menu-items {
+	background-color: #010122;
+	color: #fff;
+	padding: 50px 15px;
+	display: flex;
+	flex-direction: row;
+	gap: 100px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.Menu-items a {
+	cursor: pointer;
+}
