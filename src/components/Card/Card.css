@@ -1,0 +1,33 @@
+.card {
+	border: 1px solid #000;
+	margin: 20px;
+	padding: 10px;
+	width: 20%;
+}
+
+.card:hover {
+	background-color: #527fd3;
+	color: #fff;
+}
+
+.male {
+	background-color: #2537d6;
+	color: #fff;
+}
+
+.male:hover {
+	background-color: #fff;
+	color: #2537d6;
+	border: 1px solid #2537d6;
+}
+
+.female {
+	background-color: #801480;
+	color: #fff;
+}
+
+.female:hover {
+	background-color: #fff;
+	color: #801480;
+	border: 1px solid #801480;
+}
