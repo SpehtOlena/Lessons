@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "name": "Fallon Brown",
+      "username": "bacunozywo",
+      "email": "tiridu@mailinator.com",
+      "address": {
+        "street": "Dolor nemo nisi ex d",
+        "suite": "Temporibus dignissim",
+        "city": "Rerum velit amet qu",
+        "zipcode": 22939
+      },
+      "phone": "+1 (782) 176-5802",
+      "website": "https://www.nevorulykula.com.au",
+      "company": {
+        "name": "Phillips Hooper Co",
+        "catchPhrase": "Id qui minus proiden",
+        "bs": "Duis deserunt nemo r"
+      },
+      "id": 26
+    },
+    {
+      "name": "Kasper Brewer",
+      "username": "lyhapa",
+      "email": "gujiq@mailinator.com",
+      "address": {
+        "street": "Explicabo Vel lorem",
+        "suite": "Eos eveniet qui dol",
+        "city": "Quis cillum expedita",
+        "zipcode": 24932
+      },
+      "phone": "+1 (826) 768-5069",
+      "website": "https://www.cefybyx.org",
+      "company": {
+        "name": "Vincent and Galloway Trading",
+        "catchPhrase": "Eos in cum dolore qu",
+        "bs": "Doloremque tempora i"
+      },
+      "id": 28
+    },
+    {
+      "name": "Beck Pacheco",
+      "username": "pyrad",
+      "email": "doxohibel@mailinator.com",
+      "address": {
+        "street": "Est dolore eos quide",
+        "suite": "Aut ea quia quidem u",
+        "city": "Eiusmod molestias di",
+        "zipcode": 87660
+      },
+      "phone": "+1 (769) 288-5324",
+      "website": "https://www.huxig.ca",
+      "company": {
+        "name": "Salas Roman Co",
+        "catchPhrase": "Iste explicabo Aute",
+        "bs": "Omnis facilis laboru"
+      },
+      "id": 31
+    },
+    {
+      "name": "Chadwick Marks",
+      "username": "mymavemyg",
+      "email": "lybolowy@mailinator.com",
+      "address": {
+        "street": "Esse ullam tempor la",
+        "suite": "Tempore dignissimos",
+        "city": "Officiis officia acc",
+        "zipcode": 13628
+      },
+      "phone": "+1 (179) 945-1882",
+      "website": "https://www.huhofyn.us",
+      "company": {
+        "name": "Rocha Good Co",
+        "catchPhrase": "Doloremque in sit l",
+        "bs": "Possimus vel dolore"
+      },
+      "id": 32
+    }
+  ],
+  "posts": []
+}
