@@ -1,128 +1,125 @@
-import { useEffect, useState } from 'react';
-import { Space, Row, Col, Button } from 'antd';
+import { useEffect } from 'react';
 import './App.css';
-import Card from './components/Card/Card';
-import AntdForm from './components/AntdForm/AntdForm';
-import axios from 'axios';
-
-
-const arr = [
-	{
-		name: 'test1',
-		type: 'type1',
-		items: [1, 2, 3, 4]
-	},
-	{
-		name: 'test2',
-		type: 'type1',
-		items: [5, 6, 7, 8]
-	},
-	{
-		name: 'test3',
-		type: 'type2',
-		items: [9, 10, 11, 12]
-	},
-	{
-		name: 'test4',
-		type: 'type2',
-		items: [13, 14, 15, 16]
-	}
-]
+import useCustomHook from './hooks/useCustomHook';
+import useCustomHook1 from './hooks/useCustomHook1';
+import useCustomHook2 from './hooks/useCustomHook2';
+import useCustomHook3 from './hooks/useCustomHook3';
+import useCustomCounter from './hooks/useCustomCounter';
+import useCustomAxios from './hooks/useCustomAxios';
 
 function App() {
-	const [activeType, setActiveType] = useState({});
-
-	const [activeItems, setActiveItems] = useState([]);
-
-	// Запити
-	// npm i -g json-server - встановити сервер
-	// json-server -w src/server/data.json  запустити сервер (побачити), якщо видає помилку по доступах, потрібно поміняти в Windows PowerShell (https://youtu.be/7cVMs202xag?si=QbWfZ7egWujQ1YG1)
-
-	// Запит 1
-	const [data, setData] = useState([]);
-	const [activeUser, setActiveUser] = useState(null);
-	const [statusForm, setStatusForm] = useState(true)
+	const { value, handleChange } = useCustomHook([])
+	const { value1 } = useCustomHook1(window.innerWidth)
 	useEffect(() => {
-		axios.get('http://localhost:3000/users')
-			.then(res => setData(res.data))
-	}, [])
+		const handleKeyPress = event => {
+			handleChange([...value, event.key])
+		}
+		document.addEventListener('keypress', handleKeyPress)
+		return () => {
+			document.removeEventListener('keypress', handleKeyPress)
+		}
+	}, [handleChange]);
 
+	// Location
+	const { value2: userLocation, handleChangeLocation } = useCustomHook2(null)
+	useEffect(() => {
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				handleChangeLocation({
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude
+				})
+			},
+			(error) => {
+				console.log(error);
+			}
+		)
+	}, [handleChangeLocation])
+
+	// Notification
+	const { value3: notification, handleChangeNotification } = useCustomHook3('')
+	const handleButtonClick = () => {
+		handleChangeNotification('Message!')
+	}
+	useEffect(() => {
+		if (notification) {
+			// 
+			handleChangeNotification('')
+		}
+	}, [handleChangeNotification, notification])
+
+	// Count
+	const { count, increment, decrement } = useCustomCounter(0)
+
+	// Axios
+	const { data, loading, error } = useCustomAxios('https://jsonplaceholder.typicode.com/posts')
+	if (error) {
+		console.log(error);
+	}
 	return (
+
 		<div className="App">
-
-			<hr />
-			<button onClick={() => { setActiveType('type1') }}>Type 1</button>
-			<button onClick={() => { setActiveType('type2') }}>Type 2</button>
-			<button onClick={() => { setActiveType('') }}>All types</button>
-			<ul>
-				{
-					!!activeType ?
-						arr.filter(value => value.type === activeType).map((item, index) => <li key={index}>{item.name}</li>)
-						:
-						arr.map((item, index) => <li key={index}>{item.name}</li>)
-				}
-			</ul>
-
-			<hr />
 			<div>
+				<input type='text' value={value} onChange={(e) => handleChange(e.target.value)} />
+				<p>
+					Window width: {value1}
+				</p>
+				<p>
+					Last key pressed: {value}
+				</p>
 				<ul>
-					{arr.map((value, index) => <li onClick={() => setActiveItems(value.items)} style={{ cursor: 'pointer' }} key={value.items}>
-						{value.name}, {value.type}
-					</li>)}
+					{
+						value.map((item, index) => (
+							<li key={index}>
+								{item}
+							</li>
+						))
+					}
 				</ul>
-				{
-					!!activeItems.length ?
-						activeItems.map((activeItem) => (
-							<div key={activeItem}>
-								{activeItem}
-							</div>
-						)) :
-						<div>
-							Click on item!
-						</div>
-				}
+			</div>
+
+
+			<hr />
+			<h2>Location</h2>
+			<p>
+				Your location: {userLocation ? `${userLocation.latitude}, ${userLocation.longitude}` : 'Loading'}
+			</p>
+
+			<hr />
+			<h2>Notification</h2>
+			<div>
+				<button onClick={handleButtonClick}>Show</button>
+				<div>{notification}</div>
 			</div>
 
 			<hr />
-			<hr />
-			<hr />
-			<h1>Запити</h1>
+			<h2>Count</h2>
+			<div>
+				<button onClick={decrement}>-</button>
+				{count}
+				<button onClick={increment}>+</button>
+			</div>
 
 			<hr />
-			<Row>
-				<Col span={12}>
-					<Space wrap>
+			<h2>Axios</h2>
+			<div>
+
+				{
+					!loading && <ul>
 						{
-							!!data.length && data.map((value, index) =>
-								<Card
-									onClick={() => setActiveUser(value)}
-									key={index}
-									data={value}
-								/>)
+							data.map((item, index) => (
+								<li key={index}>
+									{item.title}
+								</li>
+							))
 						}
-					</Space>
-				</Col>
-				<Col span={12}>
-					<Button onClick={() => setStatusForm(!statusForm)} type='dashed' className='Button'>Click!</Button>
-					{
-						statusForm ?
-							<AntdForm
-								edit={!!activeUser && true}
-								initialData={!!activeUser && activeUser}
-								globalData={data}
-								setData={setData} /> :
-							<AntdForm
-								globalData={data}
-								setData={setData} />
-					}
-
-				</Col>
-
-			</Row>
+					</ul>
+				}
+			</div>
 		</div>
 	);
 }
 
 export default App;
 
-// 40:47
+
