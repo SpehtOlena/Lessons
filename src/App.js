@@ -1,111 +1,104 @@
-import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { Button, Card, Space, Row, Col, Typography, Divider, Spin } from 'antd';
-import { decrement, increment, getUsers, getUser, getPosts, getPost, loading } from './redux/actions';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { Layout, Menu, message } from 'antd';
+import UserList from './pages/UserList/UserList';
+import AddUser from './pages/AddUser/AddUser';
+
 
 function App() {
+	const [messageApi, contextHolder] = message.useMessage();
+	const success = (text) => {
+		messageApi.open({
+			type: 'success',
+			content: text,
+		});
+	};
+	const { Header, Content, Footer } = Layout;
+	const [activePage, setActivePage] = useState(null);
 
-	const dispatch = useDispatch();
-	const counter = useSelector(state => state.counter.data);
-	const users = useSelector(state => state.users.data);
-	const user = useSelector(state => state.users.item)
-	const posts = useSelector(state => state.posts.data);
-	const post = useSelector(state => state.posts.item);
-	const loadingUsers = useSelector(state => state.users.loading)
-	const error = useSelector(state => state.users.error)
+	const menuItems = [
+		{
+			key: 'UsersList',
+			label: 'Users',
+		},
+		{
+			key: 'AddUser',
+			label: 'Add users',
+		},
+	]
 
-	useEffect(() => {
-		dispatch(getUsers())
-		dispatch(getPosts())
-	}, [])
+	function switchPages(page) {
+		switch (page) {
+			case 'AddUser': {
+				return <AddUser success={success} setActivePage={setActivePage} />
+			}
+			case 'UsersList': {
+				return <UserList success={success} />
+			}
+		}
+	}
 	return (
-		<div className="App">
-			<Space>
-				<Button onClick={() => dispatch(decrement(counter))}>-</Button>
-				{counter}
-				<Button onClick={() => dispatch(increment(counter))}>+</Button>
-			</Space>
+		<Layout className="layout" style={{ minHeight: '100vh' }}>
+			{contextHolder}
+			<Header
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+				}}
+			>
+				<div className="demo-logo" />
+				<Menu
+					theme="dark"
+					mode="horizontal"
+					items={menuItems}
+					style={{ width: '100%' }}
+					onClick={(item) => {
+						const page = switchPages(item.key)
+						setActivePage(page)
+					}}
+				/>
+			</Header>
+			<Content
+				style={{
+					padding: '0 50px',
+				}}
+			>
+				{activePage}
+			</Content>
+			<Footer
+				style={{
+					textAlign: 'center',
+				}}
+			>
+				Ant Design ©2023 Created by Ant UED
+			</Footer>
+		</Layout>
 
-			<br />
-			<br />
-			<br />
 
-			<Space wrap>
-				{
-					users.map(value =>
-						<Card key={value.id}>
-							{value.username}
-						</Card>)
-				}
-			</Space>
-			<br />
-			<br />
-			<br />
-			<hr />
-			<hr />
-			<br />
-			<br />
-			<br />
-			<Divider>Users</Divider>
-			<Row>
-				<Col span={20}>
-					<Space wrap>
-						{
-							loadingUsers ?
-								<Spin /> :
-								users.map(value =>
-									<Card key={value.id} onClick={() => dispatch(getUser(value))} style={{ cursor: 'pointer' }}>
-										{value.username}
-									</Card>)
-						}
-						{
-							!!error &&
-							error.message
-						}
-					</Space>
-				</Col>
-				<Col span={4}>
-					<Card>
-						<Typography.Title>
-							{user.username}
-							<img src={user.img} alt="" />
-						</Typography.Title>
-					</Card>
-				</Col>
-			</Row>
-			<br />
-			<br />
-			<br />
-			<hr />
-			<hr />
-			<br />
-			<br />
-			<br />
-			<Divider>Posts</Divider>
-			<Row>
-				<Col span={20}>
-					<Space wrap>
-						{
-							posts.map(value =>
-								<Card key={value.id} onClick={() => dispatch(getPost(value))} style={{ cursor: 'pointer' }}>
-									{value.title}
-								</Card>)
-						}
-					</Space>
-				</Col>
-				<Col span={4}>
-					<Card>
-						<Typography.Title>
-							{post.title}
-						</Typography.Title>
-					</Card>
-				</Col>
-			</Row>
-		</div>
 	);
 }
 
 export default App;
 
 
+
+
+// <Row justify={"space-between"}>
+// 	<Col span={18}>
+//
+// 	</Col>
+// 	<Col span={4}>
+// 		{
+// 			!!activeUser.id &&
+// 			<Space direction="vertical">
+// 				<Card>
+// 					<Typography.Text type={'secondary'}>{activeUser.id}</Typography.Text>
+// 					<Typography.Title>{activeUser.username}</Typography.Title>
+// 					<img src={activeUser.img} alt="" />
+// 				</Card>
+//
+// 			</Space>
+
+// 		}
+// 	</Col>
+// </Row >
