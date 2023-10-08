@@ -7,9 +7,8 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action) {
 	switch (action.type) {
-		default: {
+		default:
 			return state
-		}
 		case GET_USERS: {
 			return { ...state, data: action.payload }
 		}
@@ -35,3 +34,5 @@ export default function usersReducer(state = initialState, action) {
 		}
 	}
 }
+
+// 1 год

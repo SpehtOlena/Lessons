@@ -1,104 +1,44 @@
 import './App.css';
-import { useState } from 'react';
-import { Layout, Menu, message } from 'antd';
-import UserList from './pages/UserList/UserList';
-import AddUser from './pages/AddUser/AddUser';
+import { Button, Row, Space, Layout, Menu } from 'antd';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { useEffect } from 'react';
 
-
-function App() {
-	const [messageApi, contextHolder] = message.useMessage();
-	const success = (text) => {
-		messageApi.open({
-			type: 'success',
-			content: text,
-		});
-	};
-	const { Header, Content, Footer } = Layout;
-	const [activePage, setActivePage] = useState(null);
-
-	const menuItems = [
-		{
-			key: 'UsersList',
-			label: 'Users',
-		},
-		{
-			key: 'AddUser',
-			label: 'Add users',
-		},
-	]
-
-	function switchPages(page) {
-		switch (page) {
-			case 'AddUser': {
-				return <AddUser success={success} setActivePage={setActivePage} />
-			}
-			case 'UsersList': {
-				return <UserList success={success} />
-			}
+const App = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (location.pathname === '/') {
+			navigate('home')
 		}
-	}
+	}, []);
+	const { Header, Footer, Content } = Layout;
+	const items = [
+		{
+			label: <Link to={'home'}>Home</Link>,
+			key: 'home',
+			icon: <HomeOutlined />,
+		},
+		{
+			label: <Link to={'users'}>Users</Link>,
+			key: 'users',
+			icon: <UserOutlined />,
+		}
+	]
 	return (
-		<Layout className="layout" style={{ minHeight: '100vh' }}>
-			{contextHolder}
-			<Header
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-				}}
-			>
-				<div className="demo-logo" />
-				<Menu
-					theme="dark"
-					mode="horizontal"
-					items={menuItems}
-					style={{ width: '100%' }}
-					onClick={(item) => {
-						const page = switchPages(item.key)
-						setActivePage(page)
-					}}
-				/>
-			</Header>
-			<Content
-				style={{
-					padding: '0 50px',
-				}}
-			>
-				{activePage}
-			</Content>
-			<Footer
-				style={{
-					textAlign: 'center',
-				}}
-			>
-				Ant Design ©2023 Created by Ant UED
-			</Footer>
-		</Layout>
+		<div className={'App'}>
 
+			<Layout style={{ width: '100vw', minHeight: '90vh' }}>
+				<Header style={{ color: "white" }}>
+					<Menu defaultSelectedKeys={[location.pathname.split('/')[1]]} mode="horizontal" items={items} theme={'dark'} />
+				</Header>
+				<Content style={{ padding: '20px 50px' }}>
+					<Outlet />
+				</Content>
+				<Footer style={{ color: "white", background: '#001529' }}>Footer</Footer>
+			</Layout>
 
-	);
+		</div>
+	)
 }
-
-export default App;
-
-
-
-
-// <Row justify={"space-between"}>
-// 	<Col span={18}>
-//
-// 	</Col>
-// 	<Col span={4}>
-// 		{
-// 			!!activeUser.id &&
-// 			<Space direction="vertical">
-// 				<Card>
-// 					<Typography.Text type={'secondary'}>{activeUser.id}</Typography.Text>
-// 					<Typography.Title>{activeUser.username}</Typography.Title>
-// 					<img src={activeUser.img} alt="" />
-// 				</Card>
-//
-// 			</Space>
-
-// 		}
-// 	</Col>
-// </Row >
+export default App
