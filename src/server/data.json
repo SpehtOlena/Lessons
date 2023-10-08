@@ -19,12 +19,6 @@
       "id": 3
     },
     {
-      "username": "Nadia",
-      "img": "https://picsum.photos/id/217/200/300",
-      "password": "Pa$$w0rd!",
-      "id": 4
-    },
-    {
       "username": "Oleg",
       "img": "https://picsum.photos/id/215/200/300",
       "password": "Pa$$w0rd!",
@@ -93,20 +87,6 @@
         }
       ],
       "id": 2
-    },
-    {
-      "title": "Quae ea debitis elig",
-      "body": "Quaerat culpa nobisQuaerat culpa nobisQuaerat culpa nobis \nQuaerat culpa nobis\nQuaerat culpa nobisQuaerat culpa nobis",
-      "userId": 4,
-      "comments": [
-        {
-          "body": "Test 1.1",
-          "idUser": 4,
-          "imgUser": "https://picsum.photos/id/225/200/300",
-          "username": "Olena"
-        }
-      ],
-      "id": 3
     }
   ]
 }
