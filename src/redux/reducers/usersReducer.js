@@ -1,25 +1,24 @@
-import { GET_POSTS, GET_POST, CREATE_POST, EDIT_POST, DELETE_POST } from "./types"
+import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS } from "../types/USER";
 
 const initialState = {
 	data: [],
 	item: {}
 }
 
-export default function postsReducer(state = initialState, action) {
+export default function usersReducer(state = initialState, action) {
 	switch (action.type) {
-		default: {
+		default:
 			return state
-		}
-		case GET_POSTS: {
+		case GET_USERS: {
 			return { ...state, data: action.payload }
 		}
-		case GET_POST: {
+		case GET_USER: {
 			return { ...state, item: action.payload }
 		}
-		case CREATE_POST: {
+		case CREATE_USER: {
 			return { ...state, data: [...state.data, action.payload] }
 		}
-		case EDIT_POST: {
+		case EDIT_USER: {
 			return {
 				...state, data: state.data.map(value => {
 					if (value.id === action.payload.id) {
@@ -30,7 +29,7 @@ export default function postsReducer(state = initialState, action) {
 				})
 			}
 		}
-		case DELETE_POST: {
+		case DELETE_USER: {
 			return { ...state, data: state.data.filter(value => value.id !== action.payload.id) }
 		}
 	}
