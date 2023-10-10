@@ -1,4 +1,4 @@
-import { GET_USERS, GET_USER, CREATE_USER, EDIT_USER, DELETE_USER } from "../types/types"
+import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS } from "../types/types";
 
 const initialState = {
 	data: [],
@@ -7,6 +7,8 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action) {
 	switch (action.type) {
+		default:
+			return state
 		case GET_USERS: {
 			return { ...state, data: action.payload }
 		}
@@ -30,7 +32,5 @@ export default function usersReducer(state = initialState, action) {
 		case DELETE_USER: {
 			return { ...state, data: state.data.filter(value => value.id !== action.payload.id) }
 		}
-		default:
-			return state
 	}
 }
