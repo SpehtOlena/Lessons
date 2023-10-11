@@ -1,52 +1,46 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { axiosRequest } from "./redux/actions";
-import { Button, Card, Col, Form, Input, Row, Space, Typography, Layout, Menu, theme } from "antd";
+import { useState } from "react";
+import { Layout, Menu, message } from "antd";
 import { Header, Footer, Content } from "antd/es/layout/layout";
-import { useForm } from "antd/es/form/Form";
 import UsersList from "./pages/UsersList/UsersList";
 import AddUser from "./pages/AddUser/AddUser";
 
 function App() {
 
-	const [form] = useForm();
 	const [activePage, setActivePage] = useState();
-	const dispatch = useDispatch();
-	const users = useSelector(state => state.users.data);
-	const [activeUser, setActiveUser] = useState({});
-
-	useEffect(() => {
-		dispatch(axiosRequest('', 'users', ''))
-	}, []);
-
-	useEffect(() => {
-		form.setFieldsValue(activeUser)
-	}, [activeUser]);
 
 	const menuItems = [
 		{
 			key: 'UsersList',
 			label: 'Users',
-			element: <UsersList />
 		},
 		{
 			key: 'AddUser',
 			label: 'Add user',
-			element: <AddUser />
 		}
 	]
-	const onFinish = (values) => {
-		console.log('Success:', values);
+
+	const [messageApi, contextHolder] = message.useMessage();
+	const success = (text) => {
+		messageApi.open({
+			type: 'success',
+			content: text,
+		});
 	};
-	const onFinishFailed = (errorInfo) => {
-		console.log('Failed:', errorInfo);
-	};
-	const callback = (value) => {
-		setActiveUser(value)
+
+	function switchPages(page) {
+		switch (page) {
+			case 'AddUser': {
+				return <AddUser setActivePage={setActivePage} messageApi={messageApi} success={success} />
+			}
+			case 'UsersList': {
+				return <UsersList success={success} />
+			}
+		}
 	}
 
 	return (
 		<Layout className="layout" style={{ minHeight: '100vh' }}>
+			{contextHolder}
 			<Header
 				style={{
 					display: 'flex',
@@ -60,7 +54,7 @@ function App() {
 					items={menuItems}
 					style={{ width: '100%' }}
 					onClick={(item) => {
-						console.log(item);
+						setActivePage(switchPages(item.key))
 					}}
 				/>
 			</Header>
@@ -89,41 +83,12 @@ export default App;
 
 // <Row justify={'space-between'}>
 // 			<Col span={18}>
-// 				<Space wrap>
-// 					{
-// 						users.map(value => (
-// 							<Card onClick={() => callback(value)} key={value.id} style={{ cursor: 'pointer' }}>
-// 								<Typography.Text code>{value.id}</Typography.Text>
-// 								<Typography.Title>{value.username}</Typography.Title>
-// 								<img src={value.img} alt="" />
-// 							</Card>
-// 						))
-// 					}
-// 				</Space>
+//
 // 			</Col>
 // 			<Col span={4}>
 // 				{
 // 					!!activeUser.id &&
-// 					<Form
-// 						name="basic"
-// 						form={form}
-// 						onFinish={onFinish}
-// 						onFinishFailed={onFinishFailed}
-// 						initialValues={activeUser}>
-// 						<Form.Item
-// 							name={'username'}
-// 							label={'username'}>
-// 							<Input />
-// 						</Form.Item>
-// 						<Form.Item
-// 							name={'password'}
-// 							label={'password'}>
-// 							<Input.Password />
-// 						</Form.Item>
-// 						<Form.Item>
-// 							<Button type={'primary'}>Submit</Button>
-// 						</Form.Item>
-// 					</Form>
+//
 
 // 				}
 // 			</Col>

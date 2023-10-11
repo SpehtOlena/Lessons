@@ -1,135 +1,107 @@
 {
-	"users": [
-		{
-			"username": "Taras",
-			"img": "https://picsum.photos/id/238/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 1
-		},
-		{
-			"username": "Nazar",
-			"img": "https://picsum.photos/id/282/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 2
-		},
-		{
-			"username": "Ivan",
-			"img": "https://picsum.photos/id/287/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 3
-		},
-		{
-			"username": "Oleg",
-			"img": "https://picsum.photos/id/215/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 5
-		},
-		{
-			"username": "Vika",
-			"img": "https://picsum.photos/id/211/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 7
-		},
-		{
-			"username": "Olena",
-			"password": "Olena",
-			"img": "https://picsum.photos/id/225/200/300",
-			"id": 8
-		},
-		{
-			"username": "Roman",
-			"img": "https://picsum.photos/id/206/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 9
-		},
-		{
-			"username": "Igor",
-			"img": "https://picsum.photos/id/227/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 10
-		},
-		{
-			"username": "Vova",
-			"img": "https://picsum.photos/id/228/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 11
-		},
-		{
-			"username": "Oleksa",
-			"img": "https://picsum.photos/id/229/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 12
-		},
-		{
-			"username": "Davyd",
-			"img": "https://picsum.photos/id/243/200/300",
-			"password": "Pa$$w0rd!",
-			"id": 13
-		}
-	],
-	"posts": [
-		{
-			"title": "Est ut sunt ex deb",
-			"body": "Mollitia recusandae",
-			"userId": 36,
-			"comments": [
-				{
-					"body": "test",
-					"idUser": 36,
-					"imgUser": "https://picsum.photos/id/287/200/300",
-					"username": "qabusaxuq"
-				},
-				{
-					"body": "test5"
-				},
-				{
-					"body": "test7",
-					"idUser": 37,
-					"imgUser": null,
-					"username": "zypuladeti"
-				},
-				{
-					"body": "comment3",
-					"idUser": 38,
-					"imgUser": "https://picsum.photos/id/211/200/300",
-					"username": "dofotev"
-				}
-			],
-			"id": 1
-		},
-		{
-			"title": "Voluptas ipsum sit ",
-			"body": "Qui possimus volupt",
-			"userId": 38,
-			"comments": [
-				{
-					"body": "dfgdfg",
-					"idUser": 38,
-					"imgUser": "https://picsum.photos/id/211/200/300",
-					"username": "dofotev"
-				},
-				{
-					"body": "Test comment",
-					"idUser": 39,
-					"imgUser": null,
-					"username": "getalyjy"
-				}
-			],
-			"id": 2
-		},
-		{
-			"title": "Quae ea debitis elig",
-			"body": "Quaerat culpa nobisQuaerat culpa nobisQuaerat culpa nobis \nQuaerat culpa nobis\nQuaerat culpa nobisQuaerat culpa nobis",
-			"userId": 41,
-			"comments": [
-				{
-					"body": "Test 1.1",
-					"idUser": 41,
-					"imgUser": "https://picsum.photos/id/225/200/300",
-					"username": "Olena"
-				}
-			],
-			"id": 3
-		}
-	]
+  "users": [
+    {
+      "username": "Taras",
+      "img": "https://picsum.photos/id/238/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 1
+    },
+    {
+      "username": "Nazar",
+      "img": "https://picsum.photos/id/282/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 2
+    },
+    {
+      "username": "Ivan",
+      "img": "https://picsum.photos/id/287/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 3
+    },
+    {
+      "username": "Oleg",
+      "img": "https://picsum.photos/id/215/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 5
+    },
+    {
+      "username": "Vika",
+      "img": "https://picsum.photos/id/211/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 7
+    },
+    {
+      "username": "Olena",
+      "password": "Olena",
+      "img": "https://picsum.photos/id/225/200/300",
+      "id": 8
+    },
+    {
+      "username": "Roman",
+      "img": "https://picsum.photos/id/206/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 9
+    },
+    {
+      "username": "Igor",
+      "img": "https://picsum.photos/id/227/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 10
+    },
+    {
+      "username": "Vova",
+      "img": "https://picsum.photos/id/228/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 11
+    },
+    {
+      "username": "Oleksa",
+      "img": "https://picsum.photos/id/229/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 12
+    },
+    {
+      "username": "Davyd",
+      "img": "https://picsum.photos/id/243/200/300",
+      "password": "Pa$$w0rd!",
+      "id": 13
+    },
+    {
+      "username": "TEST",
+      "password": "Pa$$w0rd!",
+      "img": "https://picsum.photos/id/287/200/300",
+      "id": 14
+    },
+    {
+      "username": "Petro",
+      "password": "Pa$$w0rd!",
+      "img": "https://picsum.photos/id/290/200/300",
+      "id": 17
+    },
+    {
+      "username": "Pavlo",
+      "password": "Pa$$w0rd!",
+      "img": "https://picsum.photos/id/289/200/300",
+      "id": 18
+    },
+    {
+      "username": "Eduard",
+      "password": "Pa$$w0rd!",
+      "img": "https://picsum.photos/id/255/200/300",
+      "id": 19
+    },
+    {
+      "username": "Fedor",
+      "password": "Pa$$w0rd!",
+      "img": "https://picsum.photos/id/294/200/300",
+      "id": 20
+    },
+    {
+      "username": "REST",
+      "password": "Pa$$w0rd!",
+      "img": "https://picsum.photos/id/264/200/300",
+      "id": 21
+    }
+  ],
+  "posts": []
 }

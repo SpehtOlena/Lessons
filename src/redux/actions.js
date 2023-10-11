@@ -37,7 +37,7 @@ export function axiosRequest(data, namePage, request) {
 				axios
 					.delete(`${URL}${namePage}/${data.id}`)
 					.then(response => {
-						dispatch({ type: DELETE_USER, payload: response.data })
+						dispatch({ type: DELETE_USER, payload: data })
 					})
 			}
 		}
