@@ -20,8 +20,6 @@ const UserPage = () => {
 		}
 	})
 
-
-
 	return (
 		<>
 			{
