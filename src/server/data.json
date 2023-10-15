@@ -2,105 +2,87 @@
   "users": [
     {
       "username": "Taras",
-      "img": "https://picsum.photos/id/238/200/300",
+      "img": "https://picsum.photos/id/238/400/600",
       "password": "Pa$$w0rd!",
       "id": 1
     },
     {
       "username": "Nazar",
-      "img": "https://picsum.photos/id/282/200/300",
+      "img": "https://picsum.photos/id/282/400/600",
       "password": "Pa$$w0rd!",
       "id": 2
     },
     {
       "username": "Ivan",
-      "img": "https://picsum.photos/id/287/200/300",
+      "img": "https://picsum.photos/id/287/400/600",
       "password": "Pa$$w0rd!",
       "id": 3
     },
     {
       "username": "Oleg",
-      "img": "https://picsum.photos/id/215/200/300",
+      "img": "https://picsum.photos/id/215/400/600",
       "password": "Pa$$w0rd!",
       "id": 5
     },
     {
       "username": "Vika",
-      "img": "https://picsum.photos/id/211/200/300",
+      "img": "https://picsum.photos/id/211/400/600",
       "password": "Pa$$w0rd!",
       "id": 7
     },
     {
       "username": "Olena",
       "password": "Olena",
-      "img": "https://picsum.photos/id/225/200/300",
+      "img": "https://picsum.photos/id/225/400/600",
       "id": 8
     },
     {
       "username": "Roman",
-      "img": "https://picsum.photos/id/206/200/300",
+      "img": "https://picsum.photos/id/206/400/600",
       "password": "Pa$$w0rd!",
       "id": 9
     },
     {
       "username": "Igor",
-      "img": "https://picsum.photos/id/227/200/300",
+      "img": "https://picsum.photos/id/227/400/600",
       "password": "Pa$$w0rd!",
       "id": 10
     },
     {
       "username": "Vova",
-      "img": "https://picsum.photos/id/228/200/300",
+      "img": "https://picsum.photos/id/228/400/600",
       "password": "Pa$$w0rd!",
       "id": 11
     },
     {
       "username": "Oleksa",
-      "img": "https://picsum.photos/id/229/200/300",
+      "img": "https://picsum.photos/id/229/400/600",
       "password": "Pa$$w0rd!",
       "id": 12
     },
     {
       "username": "Davyd",
-      "img": "https://picsum.photos/id/243/200/300",
+      "img": "https://picsum.photos/id/243/400/600",
       "password": "Pa$$w0rd!",
       "id": 13
     },
     {
       "username": "TEST",
       "password": "Pa$$w0rd!",
-      "img": "https://picsum.photos/id/287/200/300",
+      "img": "https://picsum.photos/id/287/400/600",
       "id": 14
     },
     {
       "username": "Petro",
       "password": "Pa$$w0rd!",
-      "img": "https://picsum.photos/id/290/200/300",
+      "img": "https://picsum.photos/id/290/400/600",
       "id": 17
     },
     {
       "username": "Pavlo",
       "password": "Pa$$w0rd!",
-      "img": "https://picsum.photos/id/289/200/300",
+      "img": "https://picsum.photos/id/289/400/600",
       "id": 18
-    },
-    {
-      "username": "Eduard",
-      "password": "Pa$$w0rd!",
-      "img": "https://picsum.photos/id/255/200/300",
-      "id": 19
-    },
-    {
-      "username": "Fedor",
-      "password": "Pa$$w0rd!",
-      "img": "https://picsum.photos/id/294/200/300",
-      "id": 20
-    },
-    {
-      "username": "REST",
-      "password": "Pa$$w0rd!",
-      "img": "https://picsum.photos/id/264/200/300",
-      "id": 21
     }
   ],
   "posts": []

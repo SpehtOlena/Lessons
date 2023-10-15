@@ -1,100 +1,69 @@
-import { useState } from "react";
-import { Layout, Menu, message } from "antd";
-import { Header, Footer, Content } from "antd/es/layout/layout";
-import UsersList from "./pages/UsersList/UsersList";
-import AddUser from "./pages/AddUser/AddUser";
+import './App.css';
+import { Layout, Menu, Breadcrumb } from 'antd';
+import { Header, Content, Footer } from 'antd/es/layout/layout';
+import { Outlet, useLocation } from 'react-router';
+import { HomeOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-function App() {
-
-	const [activePage, setActivePage] = useState();
-
-	const menuItems = [
+const App = () => {
+	const location = useLocation();
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (location.pathname === '/') {
+			navigate('/home')
+		}
+	}, []);
+	const pathSnippets = location.pathname.split('/').filter((i) => i);
+	const extraBreadcrumbItems = pathSnippets.map((value, index) => {
+		const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+		return {
+			key: url,
+			title: <Link to={url}>{value}</Link>,
+		};
+	});
+	const breadcrumbItems = [
 		{
-			key: 'UsersList',
-			label: 'Users',
+			title: <Link to="/">root</Link>,
+			key: 'home',
+		},
+	].concat(extraBreadcrumbItems);
+	const items = [
+		{
+			label: <Link to={'/home'}>Home</Link>,
+			key: 'home',
+			icon: <HomeOutlined />,
 		},
 		{
-			key: 'AddUser',
-			label: 'Add user',
+			label: <Link to={'/users'}>Users</Link>,
+			key: 'users',
+			icon: <UserOutlined />,
+		},
+		{
+			label: <Link to={'/support'}>Support</Link>,
+			key: 'support',
+			icon: <TeamOutlined />,
+
 		}
-	]
 
-	const [messageApi, contextHolder] = message.useMessage();
-	const success = (text) => {
-		messageApi.open({
-			type: 'success',
-			content: text,
-		});
-	};
-
-	function switchPages(page) {
-		switch (page) {
-			case 'AddUser': {
-				return <AddUser setActivePage={setActivePage} messageApi={messageApi} success={success} />
-			}
-			case 'UsersList': {
-				return <UsersList success={success} />
-			}
-		}
-	}
-
+	];
 	return (
-		<Layout className="layout" style={{ minHeight: '100vh' }}>
-			{contextHolder}
-			<Header
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-				}}
-			>
-				<div className="demo-logo" />
+		<Layout style={{ width: '100wv', minHeight: '100vh' }}>
+			<Header style={{ color: 'white' }}>
 				<Menu
-					theme="dark"
+					selectedKeys={[location.pathname.split('/')[1]]}
+					defaultSelectedKeys={[location.pathname.split('/')[1]]}
 					mode="horizontal"
-					items={menuItems}
-					style={{ width: '100%' }}
-					onClick={(item) => {
-						setActivePage(switchPages(item.key))
-					}}
-				/>
+					items={items} theme={'dark'} />
 			</Header>
-			<Content
-				style={{
-					padding: '0 50px',
-				}}
-			>
-				<div className="site-layout-content">
-					{activePage}
-				</div>
+			<Content style={{ padding: "20px 50px" }}>
+				<Breadcrumb items={breadcrumbItems} />
+				<Outlet />
 			</Content>
-			<Footer
-				style={{
-					textAlign: 'center',
-				}}
-			>
-				Ant Design ©2023 Created by Ant UED
-			</Footer>
+			<Footer style={{ color: 'white', background: '#001529' }}>Footer</Footer>
 		</Layout>
-
-	);
+	)
 }
+export default App
 
-export default App;
-
-// <Row justify={'space-between'}>
-// 			<Col span={18}>
-//
-// 			</Col>
-// 			<Col span={4}>
-// 				{
-// 					!!activeUser.id &&
-//
-
-// 				}
-// 			</Col>
-
-// 		</Row>
-
-
-
-
+// 37

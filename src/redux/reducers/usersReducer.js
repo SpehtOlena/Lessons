@@ -1,8 +1,9 @@
-import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS } from "../types/USER";
+import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS, USER_ERROR } from "../types/USER";
 
 const initialState = {
 	data: [],
-	item: {}
+	item: {},
+	error: null
 }
 
 export default function usersReducer(state = initialState, action) {
@@ -31,6 +32,9 @@ export default function usersReducer(state = initialState, action) {
 		}
 		case DELETE_USER: {
 			return { ...state, data: state.data.filter(value => value.id !== action.payload.id) }
+		}
+		case USER_ERROR: {
+			return { ...state, error: action.payload }
 		}
 	}
 }

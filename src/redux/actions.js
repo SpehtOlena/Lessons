@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS } from "./types/USER"
+import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS, USER_ERROR } from "./types/USER"
 
 const URL = 'http://localhost:3000/'
 
@@ -48,7 +48,20 @@ export function axiosRequest(data, namePage, request) {
 					.then(response => {
 						dispatch({ type: GET_USER, payload: response.data })
 					})
+					.catch((error) => {
+						dispatch({
+							type: USER_ERROR,
+							payload: { message: error.message, code: error.code, status: error.status }
+						})
+					})
 			}
 		}
+	}
+}
+
+export function clearError() {
+	return {
+		type: USER_ERROR,
+		payload: null
 	}
 }
