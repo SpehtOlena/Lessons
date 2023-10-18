@@ -1,7 +1,7 @@
 import axios from "axios"
-import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS, USER_ERROR } from "./types/USER"
+import { GET_PRODUCT, GET_PRODUCTS, EDIT_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, PRODUCT_ERROR } from './types/PRODUCT'
 
-const URL = 'http://localhost:3000/'
+const URL = 'https://fakestoreapi.com/'
 
 export function axiosRequest(data, namePage, request) {
 	const httpRequest = request.toLowerCase();
@@ -11,7 +11,7 @@ export function axiosRequest(data, namePage, request) {
 				axios
 					.get(URL + namePage)
 					.then(response => {
-						dispatch({ type: GET_USERS, payload: response.data })
+						dispatch({ type: GET_PRODUCTS, payload: response.data })
 					})
 			}
 		case 'post': {
@@ -19,7 +19,7 @@ export function axiosRequest(data, namePage, request) {
 				axios
 					.post(URL + namePage, data)
 					.then(response => {
-						dispatch({ type: CREATE_USER, payload: response.data })
+						dispatch({ type: CREATE_PRODUCT, payload: response.data })
 					})
 			}
 		}
@@ -28,7 +28,7 @@ export function axiosRequest(data, namePage, request) {
 				axios
 					.put(`${URL}${namePage}/${data.id}`, data)
 					.then(response => {
-						dispatch({ type: EDIT_USER, payload: response.data })
+						dispatch({ type: EDIT_PRODUCT, payload: response.data })
 					})
 			}
 		}
@@ -37,7 +37,7 @@ export function axiosRequest(data, namePage, request) {
 				axios
 					.delete(`${URL}${namePage}/${data.id}`)
 					.then(response => {
-						dispatch({ type: DELETE_USER, payload: data })
+						dispatch({ type: DELETE_PRODUCT, payload: data })
 					})
 			}
 		}
@@ -46,11 +46,11 @@ export function axiosRequest(data, namePage, request) {
 				axios
 					.get(`${URL}${namePage}/${data.id}`)
 					.then(response => {
-						dispatch({ type: GET_USER, payload: response.data })
+						dispatch({ type: GET_PRODUCT, payload: response.data })
 					})
 					.catch((error) => {
 						dispatch({
-							type: USER_ERROR,
+							type: PRODUCT_ERROR,
 							payload: { message: error.message, code: error.code, status: error.status }
 						})
 					})
@@ -61,7 +61,7 @@ export function axiosRequest(data, namePage, request) {
 
 export function clearError() {
 	return {
-		type: USER_ERROR,
+		type: PRODUCT_ERROR,
 		payload: null
 	}
 }

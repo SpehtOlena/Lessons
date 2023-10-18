@@ -1,13 +1,13 @@
 .App {
-	max-width: 1600px;
-	margin: 20px auto;
-	font-size: 30px;
-	text-align: center;
+	min-width: 100vw;
+	min-height: 100vh;
 }
 
-.buttons {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 30px;
+.App_header {
+	width: 100%;
+	color: #fff;
+}
+
+.app_container {
+	padding: 20px 150px;
 }

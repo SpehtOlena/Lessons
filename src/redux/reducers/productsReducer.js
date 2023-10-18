@@ -1,4 +1,4 @@
-import { CREATE_USER, DELETE_USER, EDIT_USER, GET_USER, GET_USERS, USER_ERROR } from "../types/USER";
+import { CREATE_PRODUCT, DELETE_PRODUCT, EDIT_PRODUCT, GET_PRODUCT, GET_PRODUCTS, PRODUCT_ERROR } from "../types/PRODUCT";
 
 const initialState = {
 	data: [],
@@ -10,16 +10,16 @@ export default function usersReducer(state = initialState, action) {
 	switch (action.type) {
 		default:
 			return state
-		case GET_USERS: {
+		case GET_PRODUCTS: {
 			return { ...state, data: action.payload }
 		}
-		case GET_USER: {
+		case GET_PRODUCT: {
 			return { ...state, item: action.payload }
 		}
-		case CREATE_USER: {
+		case CREATE_PRODUCT: {
 			return { ...state, data: [...state.data, action.payload] }
 		}
-		case EDIT_USER: {
+		case EDIT_PRODUCT: {
 			return {
 				...state, data: state.data.map(value => {
 					if (value.id === action.payload.id) {
@@ -30,11 +30,12 @@ export default function usersReducer(state = initialState, action) {
 				})
 			}
 		}
-		case DELETE_USER: {
+		case DELETE_PRODUCT: {
 			return { ...state, data: state.data.filter(value => value.id !== action.payload.id) }
 		}
-		case USER_ERROR: {
+		case PRODUCT_ERROR: {
 			return { ...state, error: action.payload }
 		}
 	}
 }
+
