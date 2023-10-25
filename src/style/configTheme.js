@@ -5,13 +5,35 @@ export default {
 		"wireframe": false
 	},
 	"components": {
+		"Input": {
+			"colorBorder": "rgb(196, 196, 196)",
+			"colorError": "rgb(235, 87, 87)",
+			"colorErrorBorderHover": "rgb(235, 87, 87)",
+			"colorPrimaryActive": "rgb(196, 196, 196)",
+			"colorPrimaryHover": "rgb(196, 196, 196)",
+			"colorPrimary": "rgb(196, 196, 196)",
+			"colorIconHover": "rgba(196, 196, 196)",
+			"colorTextDescription": "rgba(196, 196, 196)",
+			"controlOutline": "rgba(196, 196, 196)",
+			"borderRadius": 0,
+			"algorithm": true
+		},
 		"Layout": {
 			"colorBgHeader": "#000",
 			// "colorBgBody": "#fff"
 		},
 		"Menu": {
-			"horizontalItemSelectedColor": "#FF4D4F",
-			"horizontalItemHoverColor": "#FF4D4F"
+			"itemBg": "#000",
+			"itemColor": "#FFF",
+			"horizontalItemHoverColor": "#FFF",
+			"horizontalItemSelectedColor": "#FFF",
+			"itemHoverColor": "#FFF"
+		},
+		"Typography": {
+			"colorLink": "#FFF"
+		},
+		"Checkbox": {
+			"borderRadiusSM": 0
 		}
 	}
 }

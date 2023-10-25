@@ -1,12 +1,14 @@
 import { Link, Outlet } from 'react-router-dom';
 import { Layout, Menu, Space, Row, Col } from 'antd';
 import { Header, Content, Footer } from 'antd/es/layout/layout';
-import { HeartOutlined } from '@ant-design/icons';
+import { HeartOutlined, SearchOutlined } from '@ant-design/icons';
 import './App.css';
 import ShopCardComponent from './components/ShopCardComponent/ShopCardComponent';
 import { useEffect } from 'react';
 import { axiosRequest } from './redux/actions';
 import { useDispatch } from 'react-redux';
+import Logo from './assets/Logo.svg'
+import ShopIcon from './components/ShopIcon/ShopIcon';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -38,33 +40,33 @@ const App = () => {
 
 	return (
 		<Layout className={'App'}>
-			<Header className={'App_header'}>
-				<Row justify={'space-between'}>
-					<Col span={2}>
-						<span>Logo</span>
-					</Col>
-					<Col span={9}>
-						<Menu mode={'horizontal'} items={menuItems} style={{ width: '100%' }} />
-					</Col>
-					<Col span={5}>
-						<Space>
-							<span>SIGN IN</span>
-							<span>CREATE AN ACCOUNT</span>
-						</Space>
-					</Col>
-					<Col span={4}>
-						<Space>
-							<HeartOutlined />
-							<ShopCardComponent />
-						</Space>
-					</Col>
-				</Row>
+			<Header className={'app_header'}>
+				<Link to={'/home'} className={'app_header-link'}>
+					<img src={Logo} alt="logo" />
+				</Link>
+				<Menu className={'app_header-menu'} mode={'horizontal'} items={menuItems} />
+				<div className={'app_header-search'}>
+					<SearchOutlined style={{ fontSize: 18 }} />
+					Search
+				</div>
+				<div className={'app_header-links'}>
+					<Link to={'/Login'}>
+						Sign in
+					</Link>
+					<Link to={'/Registration'}>
+						Create an accont
+					</Link>
+				</div>
+				<div className={'app_header-icons'}>
+					<HeartOutlined style={{ fontSize: 18 }} />
+					<ShopIcon />
+				</div>
 			</Header>
 			<Content className={'app_container'}>
 				<Outlet />
 			</Content>
 			<Footer>
-				<Footer></Footer>
+				<Footer>Footer</Footer>
 			</Footer>
 		</Layout>
 

@@ -1,0 +1,22 @@
+.shop-icon {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.shop-icon-content {
+	display: flex;
+	flex-direction: column;
+	font-family: Roboto;
+	font-size: 10px;
+}
+
+.shop-icon-content>p {
+	max-height: 15px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	bottom: 20px;
+}

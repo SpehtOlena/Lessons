@@ -1,13 +1,75 @@
 .App {
 	min-width: 100vw;
 	min-height: 100vh;
+	font-family: Oswald;
 }
 
-.App_header {
+.app_header {
 	width: 100%;
 	color: #fff;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.app_header-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .app_container {
 	padding: 20px 150px;
+}
+
+.app_header-menu {
+	min-width: 30%;
+	font-family: Oswald;
+}
+
+.ant-menu-light.ant-menu-horizontal>.ant-menu-item::after {
+	bottom: 10px;
+	border-bottom-width: 1px;
+}
+
+.ant-menu-light.ant-menu-horizontal>.ant-menu-item-selected::after {
+	border-bottom: 1px solid #e84c4c;
+}
+
+.ant-menu-light.ant-menu-horizontal>.ant-menu-item:hover::after {
+	border-bottom: 1px solid #e84c4c;
+}
+
+.app_header-search {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	text-align: center;
+	font-family: Oswald;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.app_header-links {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	text-align: center;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-family: Oswald;
+}
+
+.app_header-links>a {
+	color: #FFF;
+}
+
+.app_header-icons {
+	display: flex;
+	gap: 10px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
 }
