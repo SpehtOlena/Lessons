@@ -34,6 +34,12 @@ export default {
 		},
 		"Checkbox": {
 			"borderRadiusSM": 0
+		},
+		"Button": {
+			"borderRadius": 0
+		},
+		"Select": {
+			"borderRadius": 0
 		}
 	}
 }

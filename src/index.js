@@ -7,6 +7,7 @@ import configTheme from './style/configTheme';
 import { ConfigProvider } from 'antd';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import './style/reset.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,9 +16,9 @@ root.render(
 		<ConfigProvider
 			theme={configTheme}
 		>
-			<React.StrictMode>
-				<RouterProvider router={routes} />
-			</React.StrictMode>
+
+			<RouterProvider router={routes} />
+
 		</ConfigProvider>
 	</Provider>
 

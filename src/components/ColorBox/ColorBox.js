@@ -1,10 +1,18 @@
 import './ColorBox.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const ColorBox = ({ color }) => {
-	const [activeColor, setActiveColor] = useState(false);
+const ColorBox = ({ color, onClick, colorsValues }) => {
+	const [active, setActive] = useState(false);
+	useEffect(() => {
+		onClick(active)
+		// if (colorsValues.includes(color)) {
+		// 	setActive(true)
+		// } else {
+		// 	setActive(false)
+		// }
+	}, [active])
 	return (
-		<div onClick={() => setActiveColor(!activeColor)} className={`color-box ${activeColor ? 'color-box-active' : ''}`}>
+		<div onClick={() => setActive(!active)} className={`color-box ${active ? 'color-box-active' : ''}`}>
 			<div style={{ backgroundColor: color }} className={'color-box-item'} />
 		</div >
 	)

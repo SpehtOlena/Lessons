@@ -1,8 +1,8 @@
 
 import { useSelector } from "react-redux";
-import { Space, Card } from "antd";
-import { Meta } from "antd/lib/list/Item";
+import { Space, Card, Typography } from "antd";
 import { Link } from "react-router-dom";
+import ColorBox from "../../components/ColorBox/ColorBox";
 
 const Home = () => {
 
@@ -18,14 +18,17 @@ const Home = () => {
 							style={{
 								width: 240,
 							}}
-							cover={<img alt={value.title} src={value.image} />}
+							cover={<img alt={value.name} src={value.photo} />}
 						>
-							<Meta title={value.title} description={`${value.price} $`} />
+							<Typography.Title level={5}>{value.name}</Typography.Title>
+							<p>{value.short_description}</p>
+							<p>{`${value.price.toFixed(2)} $`}</p>
 						</Card>
 					</Link>
 
-				)}
-		</Space>
+				)
+			}
+		</Space >
 	)
 }
 export default Home 

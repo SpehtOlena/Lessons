@@ -20,7 +20,8 @@
 }
 
 .app_container {
-	padding: 20px 150px;
+	padding: 20px 25px;
+	background-color: #fff;
 }
 
 .app_header-menu {
@@ -72,4 +73,81 @@
 	align-items: center;
 	justify-content: space-between;
 	cursor: pointer;
+}
+
+.app-footer {
+	background-color: #000000;
+	color: #FFFFFF;
+	padding-top: 65px;
+}
+
+.app-footer h5 {
+	text-transform: uppercase;
+	color: #FFFFFF;
+	margin-bottom: 30px;
+}
+
+.app-footer li {
+	text-transform: uppercase;
+	margin-bottom: 15px;
+	color: #828282;
+	display: flex;
+	flex-direction: column;
+}
+
+.app-footer a {
+	color: #828282;
+}
+
+.app-footer>div {
+	display: flex;
+	align-items: stretch;
+	flex-direction: row;
+}
+
+.app-footer svg {
+	margin-right: 20px;
+	font-size: 21px;
+}
+
+
+.app-footer input {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.app-footer input::placeholder {
+	color: #FFFFFF;
+}
+
+
+.app-footer button,
+.app-footer span {
+
+	color: #000000;
+	text-transform: uppercase;
+}
+
+
+
+.app-footer span {
+	color: #FFFFFF;
+	margin-bottom: 5px;
+}
+
+
+.pre-footer {
+	background-color: #E6F1FA;
+	color: #000000;
+	height: 80px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	font-family: Oswald;
+}
+
+.pre-footer svg {
+	stroke-width: 1;
+	margin-right: 6px;
 }

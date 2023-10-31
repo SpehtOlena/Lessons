@@ -1,0 +1,54 @@
+.side-bar {
+	font-family: Roboto;
+}
+
+.side-bar h4 {
+	font-family: Oswald;
+	line-height: 0.5;
+}
+
+.products_col {
+	width: 100%;
+	padding-left: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+}
+
+.products_container {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px 15px;
+}
+
+.ant-card:not(.ant-card-bordered) {
+	box-shadow: none;
+}
+
+.shop-filter-box {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding: 28px 22px;
+	border: 1px solid #000;
+	background: #FFF;
+	margin-bottom: 60px;
+}
+
+.shop-filter-box-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-family: Oswald;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.shop-filter-box-title h2 {
+	font-family: Oswald;
+}
