@@ -191,6 +191,7 @@ const Shop = () => {
 								}
 							</div> : ''
 					}
+
 				</Row>
 				<Space direction={"vertical"} style={{ width: "100%" }}>
 
