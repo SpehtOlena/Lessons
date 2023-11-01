@@ -57,7 +57,7 @@ const App = () => {
 							Sign in
 						</Link>
 						<Link to={'/Registration'}>
-							Create an accont
+							Create an account
 						</Link>
 					</div>
 					<div className={'app_header-icons'}>
@@ -117,7 +117,7 @@ const App = () => {
 							<li>girls</li>
 							<li>new arrivals</li>
 							<li>shoes</li>
-							<li>cothes</li>
+							<li>clothes</li>
 							<li>accessories</li>
 						</ul>
 					</Col>
@@ -185,7 +185,7 @@ const App = () => {
 								Subscribe to our newsletters
 							</li>
 							<li>
-								<Input placeholder={'Email Address'} />
+								<Input placeholder={'Email Address'} id="name01" />
 							</li>
 							<li>
 								<Button>Subscribe!</Button>
