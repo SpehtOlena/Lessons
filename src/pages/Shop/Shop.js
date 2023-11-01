@@ -12,6 +12,7 @@ import Meta from "antd/es/card/Meta.js";
 import DeleteFilter from "../../components/DeleteFilter/DeleteFilter.js";
 import SizesContainer from "../../components/SizesContainer/SizesContainer.js";
 import Banner from "../../components/Banner/Banner.js";
+import Rectangle71 from '../../assets/Rectangle71.png'
 
 const Shop = () => {
 

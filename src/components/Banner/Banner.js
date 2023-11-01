@@ -1,7 +1,7 @@
 import { Space } from "antd"
 import "./Banner.css"
 
-const Banner = () => {
+const Banner = ({ backgroundColor, image }) => {
 	return (
 		<div className={'banner'}>
 			<div className={'banner-container'}>
