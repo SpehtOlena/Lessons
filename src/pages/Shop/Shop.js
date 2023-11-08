@@ -13,6 +13,7 @@ import DeleteFilter from "../../components/DeleteFilter/DeleteFilter.js";
 import SizesContainer from "../../components/SizesContainer/SizesContainer.js";
 import Banner from "../../components/Banner/Banner.js";
 import Rectangle71 from '../../assets/Rectangle71.png'
+import ColorsContainer from "../../components/ColorsContainer/ColorsContainer.js";
 
 const Shop = () => {
 
@@ -23,6 +24,7 @@ const Shop = () => {
 	const [colorsValues, setColorsValues] = useState([]);
 	const [productWithFilter, setProductWithFilter] = useState([]);
 	const [sizesState, setSizesState] = useState([]);
+
 	const [showFilterItems, setShowFilterItems] = useState({
 		brand: true,
 		size: true,
@@ -164,19 +166,20 @@ const Shop = () => {
 										</Space>
 									}
 									{
-										!!colorsValues.length &&
-										<Space direction={'vertical'}>
-											<Typography.Title level={4}>
+										!!colorsValues.filter(item => item.active).length &&
+										<Space direction={"vertical"}>
+											<Typography.Title level={5}>
 												Color:
 											</Typography.Title>
-											<Space size={'large'} wrap>
+											<Space wrap size={"large"}>
 												{
-													colorsValues.map((value, index) => <DeleteFilter
-														key={index}
-														onClick={() => deleteOneElementFromFilter(setColorsValues, colorsValues, value)}
-													>
-														<ColorBox onClick={() => { }} color={value} />
-													</DeleteFilter>)
+													colorsValues.filter(item => item.active).map((item, index) =>
+														<DeleteFilter
+															key={index}
+															onClick={() => deleteOneElementFromFilter(setColorsValues, colorsValues, item.value, true)}
+														>
+															<ColorBox disabled color={item} />
+														</DeleteFilter>)
 												}
 											</Space>
 										</Space>
@@ -240,23 +243,6 @@ const Shop = () => {
 								</div>
 							</Row>
 							<SizesContainer sizesState={sizesState} setSizesState={setSizesState} />
-							{/* <Space wrap>
-							{
-								showFilterItems.size && sizes.map((value, index) =>
-									<SizeBox
-										sizeValues={sizeValues}
-										onClick={(active) => {
-											if (active) {
-												setSizeValues([...sizeValues, value])
-											} else {
-												setSizeValues(sizeValues.filter(value1 => value1 !== value))
-											}
-										}}
-										key={index}>
-										{value}
-									</SizeBox>)
-							}
-						</Space> */}
 						</Space>
 
 						{/* Dress Length */}
@@ -299,7 +285,11 @@ const Shop = () => {
 									}
 								</div>
 							</Row>
-							<Space wrap>
+							{
+								showFilterItems.color &&
+								<ColorsContainer colorValues={colorsValues} setColorValues={setColorsValues} />
+							}
+							{/* <Space wrap>
 								{
 									showFilterItems.color && colors.map((value, index) =>
 										<ColorBox
@@ -316,7 +306,7 @@ const Shop = () => {
 										>
 										</ColorBox>)
 								}
-							</Space>
+							</Space> */}
 						</Space>
 
 						{/* Price */}

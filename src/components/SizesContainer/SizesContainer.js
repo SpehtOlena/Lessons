@@ -1,7 +1,7 @@
 import { Space } from "antd";
 import { sizes } from "../../structures";
 import SizeBox from "../SizeBox/SizeBox";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const SizesContainer = ({ sizesState, setSizesState }) => {
 	useEffect(() => {
@@ -12,21 +12,7 @@ const SizesContainer = ({ sizesState, setSizesState }) => {
 			}
 		}))
 	}, []);
-	// useEffect(() => {
-	// 	setSizesState(sizes.map((value, index) => {
-	// 		if (sizeValues.includes(value)) {
-	// 			return {
-	// 				value: value,
-	// 				active: true
-	// 			}
-	// 		} else {
-	// 			return {
-	// 				value: value,
-	// 				active: false
-	// 			}
-	// 		}
-	// 	}));
-	// }, [sizeValues]);
+
 	return (
 		<Space wrap>
 			{
@@ -37,4 +23,3 @@ const SizesContainer = ({ sizesState, setSizesState }) => {
 }
 export default SizesContainer
 
-// 1:40
