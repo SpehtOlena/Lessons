@@ -106,7 +106,7 @@ const Shop = () => {
 				<Col span={6} className={"side-bar"}>
 					<Row>
 						{
-							(brandsValues.length || sizesState.filter(item => item.active).length || dressLengthValues.length || colorsValues.length) ?
+							(brandsValues.length || sizesState.filter(item => item.active).length || dressLengthValues.length || colorsValues.filter(item => item.active).length) ?
 								<div className={'shop-filter-box'}>
 									<div className={'shop-filter-box-title'}>
 										<Typography.Title level={2}>
