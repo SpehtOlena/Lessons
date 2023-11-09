@@ -1,7 +1,7 @@
 import axios from "axios"
 import { GET_PRODUCT, GET_PRODUCTS, EDIT_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, PRODUCT_ERROR } from './types/PRODUCT'
 
-const URL = 'https://fake-server-blush.vercel.app/'
+const URL = 'http://localhost:3000/'
 
 export function axiosRequest(data, namePage, request) {
 	const httpRequest = request.toLowerCase();
