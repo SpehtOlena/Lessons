@@ -63,12 +63,14 @@ const Shop = () => {
 		setProductWithFilter(filteredProducts)
 	}
 
+
 	const changeShowFilterItem = (fieldName) => {
 		setShowFilterItems({ ...showFilterItems, [fieldName]: !showFilterItems[fieldName] })
 	}
 	const onChangeSlider = (value) => {
 		setSliderValue(value)
 	}
+
 
 	const resetAllFilter = () => {
 		setSliderValue(500)
