@@ -1,5 +1,6 @@
 import axios from "axios"
 import { GET_PRODUCT, GET_PRODUCTS, EDIT_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, PRODUCT_ERROR } from './types/PRODUCT'
+import { GET_SHOPPING_CART_PRODUCT, GET_SHOPPING_CART_PRODUCTS, EDIT_SHOPPING_CART_PRODUCT, CREATE_SHOPPING_CART_PRODUCT, CLEAR_SHOPPING_CART_PRODUCTS } from "./types/SHOPPING_CART_PRODUCT";
 
 const URL = 'http://localhost:3000/'
 
@@ -63,5 +64,12 @@ export function clearError() {
 	return {
 		type: PRODUCT_ERROR,
 		payload: null
+	}
+}
+
+export function addProductToShoppingCart(product, count) {
+	return {
+		type: CREATE_SHOPPING_CART_PRODUCT, payload: { product: product, count: count }
+
 	}
 }

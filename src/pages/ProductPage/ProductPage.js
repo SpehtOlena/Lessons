@@ -1,5 +1,5 @@
 import { Col, Row, Space } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ColorBox from '../../components/ColorBox/ColorBox';
 import Counter from '../../components/Counter/Counter'
@@ -8,12 +8,14 @@ import SizesContainer from "../../components/SizesContainer/SizesContainer";
 import { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
 import { HeartOutlined } from "@ant-design/icons";
+import { addProductToShoppingCart } from "../../redux/actions";
 
 const ProductPage = () => {
 	const { productId } = useParams();
 	const [sizesState, setSizesState] = useState([]);
 	const [activeImage, setActiveImage] = useState();
 	const [counterValue, setCounterValue] = useState(1);
+	const dispatch = useDispatch();
 	const product = useSelector(state => state.products.data?.filter(value => parseInt(value.id) === parseInt(productId))[0])
 	useEffect(() => {
 		setActiveImage(`${product?.photo}1?set=set3`)
@@ -83,7 +85,7 @@ const ProductPage = () => {
 									</Space>
 								</Space>
 								<Space direction={'horizontal'}>
-									<Button type={'primary'}>Add to bag</Button>
+									<Button onClick={() => dispatch(addProductToShoppingCart(product, counterValue))} type={'primary'}>Add to bag</Button>
 									<Button type={'icon'} icon={<HeartOutlined />}>Save</Button>
 								</Space>
 							</Col>
