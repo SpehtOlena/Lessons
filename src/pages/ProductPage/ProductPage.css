@@ -1,0 +1,22 @@
+.product-page {
+	padding: 5px;
+}
+
+.product-page-details {
+	padding: 0 80px 0 80px;
+	display: flex;
+	flex-direction: row;
+}
+
+.product-page-details img {
+	width: 100%;
+	border: 1px solid #fff;
+	box-sizing: border-box;
+}
+
+.product-page-details-second-image-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+}

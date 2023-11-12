@@ -1,15 +1,6 @@
 import './SizeBox.css';
-import { useEffect, useState } from 'react';
 
 const SizeBox = ({ size, disabled, onClick, setSizesState, sizesState }) => {
-	// useEffect(() => {
-	// 	onClick(active)
-	// 	// if (sizeValues.includes(children)) {
-	// 	// 	setActive(true)
-	// 	// } else {
-	// 	// 	setActive(false)
-	// 	// }
-	// }, [active])
 	return (
 		<div
 			onClick={() => {

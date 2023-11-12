@@ -3,7 +3,7 @@ import { sizes } from "../../structures";
 import SizeBox from "../SizeBox/SizeBox";
 import { useEffect, useState } from "react";
 
-const SizesContainer = ({ sizesState, setSizesState }) => {
+const SizesContainer = ({ sizesState, setSizesState, dataProductPage }) => {
 	useEffect(() => {
 		setSizesState(sizes.map(value => {
 			return {
@@ -12,28 +12,28 @@ const SizesContainer = ({ sizesState, setSizesState }) => {
 			}
 		}))
 	}, []);
-	// useEffect(() => {
-	// 	setSizesState(sizes.map((value, index) => {
-	// 		if (sizeValues.includes(value)) {
-	// 			return {
-	// 				value: value,
-	// 				active: true
-	// 			}
-	// 		} else {
-	// 			return {
-	// 				value: value,
-	// 				active: false
-	// 			}
-	// 		}
-	// 	}));
-	// }, [sizeValues]);
-	return (
-		<Space wrap>
-			{
-				sizesState.map((value, index) => <SizeBox sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />)
-			}
-		</Space>
-	)
+	if (dataProductPage) {
+		return (
+			<Space wrap>
+				{sizesState.map((value, index) => {
+					const dataProduct = dataProductPage.find(item => item === value.value);
+					if (dataProduct) {
+						return <SizeBox sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />
+					} else {
+						return <SizeBox disabled sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />
+					}
+				})}
+			</Space>
+		)
+	} else {
+		return (
+			<Space wrap>
+				{
+					sizesState.map((value, index) => <SizeBox sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />)
+				}
+			</Space>
+		)
+	}
 }
 export default SizesContainer
 

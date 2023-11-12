@@ -1,55 +1,95 @@
-import { HeartOutlined } from "@ant-design/icons"
-import { Button, Col, Row, Space, Typography } from "antd"
-import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { useState } from "react"
-import InputCounter from "../../components/InputCounter/InputCounter"
+import { Col, Row, Space } from "antd";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import ColorBox from '../../components/ColorBox/ColorBox';
+import Counter from '../../components/Counter/Counter'
+import './ProductPage.css'
+import SizesContainer from "../../components/SizesContainer/SizesContainer";
+import { useEffect, useState } from "react";
+import Button from "../../components/Button/Button";
+import { HeartOutlined } from "@ant-design/icons";
 
 const ProductPage = () => {
 	const { productId } = useParams();
-	const [inputCountValue, setInputCountValue] = useState(1);
-	const product = useSelector(state => state.products.data.find(value => value.id === Number(productId)))
+	const [sizesState, setSizesState] = useState([]);
+	const [activeImage, setActiveImage] = useState();
+	const [counterValue, setCounterValue] = useState(1);
+	const product = useSelector(state => state.products.data?.filter(value => parseInt(value.id) === parseInt(productId))[0])
+	useEffect(() => {
+		setActiveImage(`${product?.photo}1?set=set3`)
+	}, [product])
 	return (
 		<>
 			{
-				!!productId && <Row justify={'space-between'}>
-					<Col span={8}>
-						<img style={{ width: '100%' }} src={product.image} alt={product.title} />
-					</Col>
-					<Col span={8}>
-						<Space direction={'vertical'}>
-							<Typography.Title>{product.title}</Typography.Title>
-							<Row>
-								<Col span={10}>
+				!!product &&
+				<div className={"product-page"}>
+					<div className={"product-page-details"}>
+						<Row justify={"space-between"}>
+							<Col span={12}>
+								<Row>
+									<Col span={4}>
+										<div className={"product-page-details-second-image-container"}>
+											<img onClick={() => {
+												setActiveImage(`${product.photo}1?set=set3`)
+											}} src={`${product.photo}1?set=set3`} alt="" />
+											<img onClick={() => {
+												setActiveImage(`${product.photo}2?set=set3`)
+											}} src={`${product.photo}2?set=set3`} alt="" />
+											<img onClick={() => {
+												setActiveImage(`${product.photo}3?set=set3`)
+											}} src={`${product.photo}3?set=set3`} alt="" />
+										</div>
+									</Col>
+									<Col span={18}>
+										<img src={activeImage} alt="" />
+									</Col>
+								</Row>
+							</Col>
+							<Col span={12}>
+								<h1>
+									Women Black Checked Fit and Flare Dress
+								</h1>
+								<Space direction={'vertical'}>
+									<p>Select Color</p>
+									<Space>
+										{
+											product.color.map((value, index) => <ColorBox key={index} color={value}
+												onClick={() => {
+
+												}} />)
+										}
+									</Space>
+								</Space>
+								<Space direction={'vertical'}>
+									<p>Select size (Inches)</p>
+									<Space>
+										<SizesContainer setSizesState={setSizesState} sizesState={sizesState} dataProductPage={product.size} />
+									</Space>
+								</Space>
+								<Space direction={'horizontal'}>
 									<Space direction={'vertical'}>
-										<div>
+										<p>
 											Quantity
-										</div>
-										<div>
-											<InputCounter inputCountValue={inputCountValue} setInputCountValue={setInputCountValue} />
-										</div>
+										</p>
+										<Counter counterValue={counterValue} setCounterValue={setCounterValue} />
 									</Space>
-								</Col>
-								<Col span={10}>
 									<Space direction={'vertical'}>
-										<div>
+										<p>
 											price total
-										</div>
-										<div>
-											{
-												inputCountValue * product.price
-											} $
-										</div>
+										</p>
+										<p>
+											{(counterValue * product.price).toFixed(2)} EUR
+										</p>
 									</Space>
-								</Col>
-							</Row>
-							<Space>
-								<Button type={'primary'}>Add to bag</Button>
-								<Button icon={<HeartOutlined />}>Save</Button>
-							</Space>
-						</Space>
-					</Col>
-				</Row>
+								</Space>
+								<Space direction={'horizontal'}>
+									<Button type={'primary'}>Add to bag</Button>
+									<Button type={'icon'} icon={<HeartOutlined />}>Save</Button>
+								</Space>
+							</Col>
+						</Row>
+					</div>
+				</div>
 			}
 		</>
 	)

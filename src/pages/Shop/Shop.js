@@ -73,7 +73,12 @@ const Shop = () => {
 	const resetAllFilter = () => {
 		setSliderValue(500)
 		setBrandsValues([])
-		setSizeValues([])
+		setSizesState(sizesState.map((value, index) => {
+			return {
+				value: value.value,
+				active: false
+			}
+		}))
 		setDressLengthValues([])
 		setColorsValues([])
 	}
@@ -240,23 +245,6 @@ const Shop = () => {
 								</div>
 							</Row>
 							<SizesContainer sizesState={sizesState} setSizesState={setSizesState} />
-							{/* <Space wrap>
-							{
-								showFilterItems.size && sizes.map((value, index) =>
-									<SizeBox
-										sizeValues={sizeValues}
-										onClick={(active) => {
-											if (active) {
-												setSizeValues([...sizeValues, value])
-											} else {
-												setSizeValues(sizeValues.filter(value1 => value1 !== value))
-											}
-										}}
-										key={index}>
-										{value}
-									</SizeBox>)
-							}
-						</Space> */}
 						</Space>
 
 						{/* Dress Length */}
@@ -381,32 +369,35 @@ const Shop = () => {
 						<Row className={'products_container'}>
 							{
 								productWithFilter.map((value, index) =>
-									<Card
-										className={'shop-card'}
-										key={index}
-										bordered={false}
-										hoverable
-										style={{ width: '23%', minWidth: '150px' }}
-										cover={<img alt={value.name}
-											src={value.photo} />}
-									>
-										<Meta title={value.name} description={<Space direction={'vertical'}>
-											<Typography.Text type={'secondary'}>
-												{value.short_description}
-											</Typography.Text>
-											<Typography.Text strong level={5}>
-												{value.price.toFixed(2)} EUR
-											</Typography.Text>
-											<Space wrap>
-												{
-													value.color.map((value, index) => <ColorBox key={index} color={value}
-														onClick={() => {
+									<Link to={`${value.id}`}>
+										<Card
+											className={'shop-card'}
+											key={index}
+											bordered={false}
+											hoverable
+											style={{ width: '23%', minWidth: '150px' }}
+											cover={<img alt={value.name}
+												src={value.photo} />}
+										>
+											<Meta title={value.name} description={<Space direction={'vertical'}>
+												<Typography.Text type={'secondary'}>
+													{value.short_description}
+												</Typography.Text>
+												<Typography.Text strong level={5}>
+													{value.price.toFixed(2)} EUR
+												</Typography.Text>
+												<Space wrap>
+													{
+														value.color.map((value, index) => <ColorBox key={index} color={value}
+															onClick={() => {
 
-														}} />)
-												}
-											</Space>
-										</Space>} />
-									</Card>)
+															}} />)
+													}
+												</Space>
+											</Space>} />
+										</Card>
+									</Link>
+								)
 							}
 						</Row>
 					</div >
