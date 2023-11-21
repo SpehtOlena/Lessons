@@ -73,3 +73,9 @@ export function addProductToShoppingCart(product, count) {
 
 	}
 }
+
+export function editProductToShoppingCard(product, quantity) {
+	return {
+		type: EDIT_SHOPPING_CART_PRODUCT, payload: { ...product, quantity: quantity }
+	}
+}
