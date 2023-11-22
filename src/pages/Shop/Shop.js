@@ -1,4 +1,4 @@
-import { Col, Row, Typography, Space, Checkbox, Slider, Card, Divider, Select } from "antd";
+import { Col, Row, Typography, Space, Checkbox, Slider, Card, Divider, Select, List } from "antd";
 import { Link } from "react-router-dom";
 import SizeBox from "../../components/SizeBox/SizeBox.js";
 import { brands, dressLengths, sizes, colors } from "../../structures";
@@ -12,7 +12,8 @@ import Meta from "antd/es/card/Meta.js";
 import DeleteFilter from "../../components/DeleteFilter/DeleteFilter.js";
 import SizesContainer from "../../components/SizesContainer/SizesContainer.js";
 import Banner from "../../components/Banner/Banner.js";
-import Rectangle71 from '../../assets/Rectangle71.png'
+import Rectangle71 from '../../assets/Rectangle71.png';
+import ProductCard from "../../components/ProductCard/ProductCard.js";
 
 const Shop = () => {
 
@@ -31,8 +32,7 @@ const Shop = () => {
 		price_range: true
 	});
 
-	const products = useSelector(state => state.products.data);
-
+	const products = useSelector(state => state.firestore.ordered.products)
 	useEffect(() => {
 		setProductWithFilter(products)
 	}, [products]);
@@ -366,40 +366,30 @@ const Shop = () => {
 
 							</Space>
 						</Row>
-						<Row className={'products_container'}>
-							{
-								productWithFilter.map((value, index) =>
-									<Link to={`${value.id}`}>
-										<Card
-											className={'shop-card'}
-											key={index}
-											bordered={false}
-											hoverable
-											style={{ width: '23%', minWidth: '150px' }}
-											cover={<img alt={value.name}
-												src={value.photo} />}
-										>
-											<Meta title={value.name} description={<Space direction={'vertical'}>
-												<Typography.Text type={'secondary'}>
-													{value.short_description}
-												</Typography.Text>
-												<Typography.Text strong level={5}>
-													{value.price.toFixed(2)} EUR
-												</Typography.Text>
-												<Space wrap>
-													{
-														value.color.map((value, index) => <ColorBox key={index} color={value}
-															onClick={() => {
 
-															}} />)
-													}
-												</Space>
-											</Space>} />
-										</Card>
+						<Divider type={"vertical"} style={{ height: "100%", margin: '0 30px' }} />
+						<List
+							position={'top'}
+							style={{ width: '100%' }}
+							pagination={{
+								position: 'top',
+								defaultPageSize: 12,
+								pageSizeOptions: ['12', '18'],
+							}}
+							grid={{
+								gutter: 16,
+								column: 4,
+							}}
+							dataSource={productWithFilter}
+							renderItem={(value, index) => (
+								<List.Item>
+									<Link to={`${value.id}`}>
+										<ProductCard key={index} value={value} index={index} />
 									</Link>
-								)
-							}
-						</Row>
+
+								</List.Item>
+							)}
+						/>
 					</div >
 				</Col>
 			</Row>

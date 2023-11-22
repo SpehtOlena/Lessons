@@ -1,21 +1,28 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Layout, Menu, Space, Row, Col, Typography, Input, Button, Divider, Affix, FloatButton } from 'antd';
 import { Header, Content, Footer } from 'antd/es/layout/layout';
 import { HeartOutlined, SearchOutlined } from '@ant-design/icons';
 import './App.css';
 import { useEffect } from 'react';
-import { axiosRequest } from './redux/actions';
-import { useDispatch } from 'react-redux';
 import Logo from './assets/Logo.svg'
 import ShopIcon from './components/ShopIcon/ShopIcon';
 import { BsCheck2 } from "react-icons/bs";
 import { FacebookFilled, InstagramFilled, TwitterSquareFilled } from "@ant-design/icons";
+import { useFirestoreConnect } from "react-redux-firebase";
 
 
 const App = () => {
-	const dispatch = useDispatch();
+	const location = useLocation()
+	const navigate = useNavigate()
+
+	useFirestoreConnect(() => [
+		{ collection: 'products' }
+	])
+
 	useEffect(() => {
-		dispatch(axiosRequest('', 'products', ' '))
+		if (location.pathname === '/') {
+			navigate('/home')
+		}
 	}, []);
 	const menuItems = [
 		{

@@ -13,10 +13,10 @@ import { editProductToShoppingCard } from "../../redux/actions";
 const ShoppingCart = () => {
 	const [data, setData] = useState();
 	const dispatch = useDispatch();
-	// const shoppingCardProducts = useSelector(state => state.shoppingCardProducts.data);
-	// useEffect(() => {
-	// 	setData(shoppingCardProducts)
-	// }, [shoppingCardProducts]);
+	const shoppingCardProducts = useSelector(state => state.firestore.ordered.shoppingCardProducts);
+	useEffect(() => {
+		setData(shoppingCardProducts)
+	}, [shoppingCardProducts]);
 
 	const columns = [
 		{
