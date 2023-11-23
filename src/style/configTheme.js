@@ -23,11 +23,11 @@ export default {
 			// "colorBgBody": "#fff"
 		},
 		"Menu": {
-			"itemBg": "#000",
+			"itemBg": '#000',
 			"itemColor": "#FFF",
-			"horizontalItemHoverColor": "#FFF",
-			"horizontalItemSelectedColor": "#FFF",
-			"itemHoverColor": "#FFF"
+			"horizontalItemHoverColor": '#fff',
+			"horizontalItemSelectedColor": "#fff",
+			"itemHoverColor": "#fff"
 		},
 		"Typography": {
 			"colorLink": "#FFF"
@@ -44,4 +44,3 @@ export default {
 	}
 }
 
-// 50

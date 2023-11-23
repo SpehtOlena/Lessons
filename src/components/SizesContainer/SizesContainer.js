@@ -1,40 +1,60 @@
+import React, { useEffect, useState } from 'react';
+import './SizesContainer.css';
 import { Space } from "antd";
 import { sizes } from "../../structures";
 import SizeBox from "../SizeBox/SizeBox";
-import { useEffect, useState } from "react";
+import { retry } from "@reduxjs/toolkit/query";
 
 const SizesContainer = ({ sizesState, setSizesState, dataProductPage }) => {
 	useEffect(() => {
+
 		setSizesState(sizes.map(value => {
 			return {
 				value: value,
 				active: false
 			}
 		}))
+
 	}, []);
 	if (dataProductPage) {
 		return (
 			<Space wrap>
 				{sizesState.map((value, index) => {
 					const dataProduct = dataProductPage.find(item => item === value.value);
+
 					if (dataProduct) {
-						return <SizeBox sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />
+						return (
+							<SizeBox
+								sizesState={sizesState}
+								setSizesState={setSizesState}
+								size={value}
+								key={index}
+							/>
+						);
 					} else {
-						return <SizeBox disabled sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />
+						return (
+							<SizeBox
+								disabled
+								sizesState={sizesState}
+								setSizesState={setSizesState}
+								size={value}
+								key={index}
+							/>
+						);
 					}
-				})}
+				})
+
+				}
 			</Space>
 		)
 	} else {
 		return (
 			<Space wrap>
-				{
-					sizesState.map((value, index) => <SizeBox sizesState={sizesState} setSizesState={setSizesState} size={value} key={index} />)
-				}
+				{sizesState.map((value, index) => <SizeBox sizesState={sizesState} setSizesState={setSizesState}
+					size={value} key={index} />)}
 			</Space>
-		)
+		);
 	}
-}
-export default SizesContainer
+};
 
-// 1:40
+export default SizesContainer;

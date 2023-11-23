@@ -9,6 +9,7 @@ import ShopIcon from './components/ShopIcon/ShopIcon';
 import { BsCheck2 } from "react-icons/bs";
 import { FacebookFilled, InstagramFilled, TwitterSquareFilled } from "@ant-design/icons";
 import { useFirestoreConnect } from "react-redux-firebase";
+import configTheme from './style/configTheme';
 
 
 const App = () => {
@@ -69,7 +70,9 @@ const App = () => {
 					</div>
 					<div className={'app_header-icons'}>
 						<HeartOutlined style={{ fontSize: 18 }} />
-						<ShopIcon />
+						<Link to={'shopping_cart'}>
+							<ShopIcon />
+						</Link>
 					</div>
 				</Header>
 			</Affix>

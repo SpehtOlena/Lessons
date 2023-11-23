@@ -1,5 +1,3 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
@@ -7,13 +5,13 @@ import 'firebase/compat/auth';
 import 'firebase/compat/database';
 
 const firebaseConfig = {
-	apiKey: "AIzaSyD_XHOdptQ0QncrpcvlJE5bflgk4VpB8FY",
-	authDomain: "crisp-6bbb6.firebaseapp.com",
-	projectId: "crisp-6bbb6",
-	storageBucket: "crisp-6bbb6.appspot.com",
-	messagingSenderId: "553417126502",
-	appId: "1:553417126502:web:1c8c7e7df055ae1e6a33a7",
-	measurementId: "G-W29ESF5JLM"
+	apiKey: "AIzaSyBGATsLtTt4_Fspi-Rghn8OLMHgN_ctKVc",
+	authDomain: "crispp-779b1.firebaseapp.com",
+	projectId: "crispp-779b1",
+	storageBucket: "crispp-779b1.appspot.com",
+	messagingSenderId: "1073357412025",
+	appId: "1:1073357412025:web:5f9350ce73333e8c0d2d68",
+	measurementId: "G-M3K4Y7CZYF"
 };
 
 const app = firebase.initializeApp(firebaseConfig);
