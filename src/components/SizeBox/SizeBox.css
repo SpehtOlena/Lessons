@@ -3,7 +3,7 @@
 	height: 46px;
 	background-color: #FFFF;
 	border: 1px solid #C4C4C4;
-	color: #828282;
+	color: #5a5a5a;
 	text-align: center;
 	font-family: Oswald;
 	font-size: 14px;
@@ -27,7 +27,7 @@
 	width: 46px;
 	height: 46px;
 	border: 1px solid var(--divider, #C4C4C4);
-	color: var(--gray-1, #828282);
+	color: var(--gray-1, #bebebe);
 	text-align: center;
 	font-family: Oswald;
 	font-size: 14px;

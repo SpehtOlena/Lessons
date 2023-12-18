@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './ProductPagePhoto.css';
-import { Col, Image, Row } from "antd";
+import { Col, Row } from "antd";
 
 const ProductPagePhoto = ({ colors, images, setColor, color }) => {
 

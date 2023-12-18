@@ -1,8 +1,7 @@
 import { useState } from "react";
 import './Counter.css'
 
-const Counter = ({ counterValue, setCounterValue }) => {
-
+const Counter = ({ setCounterValue, counterValue }) => {
 	const plus = () => {
 		setCounterValue(counterValue + 1)
 	}
@@ -19,6 +18,7 @@ const Counter = ({ counterValue, setCounterValue }) => {
 			}
 			<button onClick={plus}>+</button>
 		</div>
-	)
-}
+	);
+};
+
 export default Counter

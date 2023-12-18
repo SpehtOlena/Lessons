@@ -1,121 +1,144 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
-import { Col, List, Row, Space } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { Col, List, Row, Space } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-import './ProductPage.css'
-import ColorBox from "../../components/ColorBox/ColorBox";
-import SizesContainer from "../../components/SizesContainer/SizesContainer";
-import Counter from "../../components/Counter/Counter";
-import Button from "../../components/Button/Button";
-import { HeartOutlined } from "@ant-design/icons";
-import { addProductToShoppingCart } from "../../redux/actions";
-import ProductPagePhoto from "../../components/ProductPagePhoto/ProductPagePhoto";
-import CollapseBox from "../../components/CollapseBox/CollapseBox";
-import ProductCard from "../../components/ProductCard/ProductCard";
-
+import './ProductPage.css';
+import ColorBox from '../../components/ColorBox/ColorBox';
+import SizesContainer from '../../components/SizesContainer/SizesContainer';
+import Counter from '../../components/Counter/Counter';
+import Button from '../../components/Button/Button';
+import { HeartOutlined } from '@ant-design/icons';
+import { addProductToShoppingCart } from '../../redux/actions';
+import ProductPagePhoto from '../../components/ProductPagePhoto/ProductPagePhoto';
+import CollapseBox from '../../components/CollapseBox/CollapseBox';
+import ProductCard from '../../components/ProductCard/ProductCard';
 
 const description = {
 	about_product: 'Cool off this summer in the Mini Ruffle Smocked Tank Top from our very own LA Hearts. This tank features a smocked body, adjustable straps, scoop neckline, ruffled hems, and a cropped fit.',
 	advantages: [
-		"Smocked body",
-		"Adjustable straps",
-		"Scoop neckline",
-		"Ruffled hems",
-		"Cropped length",
-		" Model is wearing a small",
-		"100% rayon",
-		" Machine washable",
+		'Smocked body',
+		'Adjustable straps',
+		'Scoop neckline',
+		'Ruffled hems',
+		'Cropped length',
+		' Model is wearing a small',
+		'100% rayon',
+		' Machine washable',
 	],
-	shipping: 'We offer Free Standard Shipping for all orders over $75 to the 50 states and the District of Columbia. The minimum order value must be $75 before taxes, shipping and handling. Shipping fees are non-refundable.\n Please allow up to 2 business days (excluding weekends, holidays, and sale days) to process your order.\n Processing Time + Shipping Time = Delivery Time'
-}
+	shipping: 'We offer Free Standard Shipping for all orders over $75 to the 50 states and the District of Columbia. The minimum order value must be $75 before taxes, shipping and handling. Shipping fees are non-refundable.\n Please allow up to 2 business days (excluding weekends, holidays, and sale days) to process your order.\n Processing Time + Shipping Time = Delivery Time',
+};
 
 const ProductPage = () => {
 	const [color, setColor] = useState({});
+	const location = useLocation();
 	const { productId } = useParams();
-	const [sizesState, setSizesState] = useState([]);
+	const [activeImage, setActiveImage] = useState('');
+	const [selectedSizes, setSelectedSizes] = useState([]);
 	const [counterValue, setCounterValue] = useState(1);
 	const dispatch = useDispatch();
-	const products = useSelector(state => state.firestore.ordered.products)
-	const product = useSelector(state => state.firestore.ordered.products?.filter(value => parseInt(value.id) === parseInt(productId))[0])
+	const products = useSelector((state) => state.firestore.ordered.products);
+	const [product, setProduct] = useState();
+
 	useEffect(() => {
-		window.scrollTo(0, 0);
-		setColor({ value: product?.colors[0] })
+		if (product !== undefined) {
+			window.scrollTo(0, 0);
+			setColor({ value: product?.colors[0] });
+			setSelectedSizes([product.sizes[0]]);
+		}
 	}, [product]);
+
+	useEffect(() => {
+		if (product?.images[color.value]?.length) {
+			setActiveImage(product?.images[color.value][0]);
+		}
+	}, [color]);
+
+	useEffect(() => {
+		if (products !== undefined) {
+			setProduct(products.find((value) => value.id === productId));
+		}
+	}, [products, location]);
+
+	const handleAddToCart = () => {
+		dispatch(addProductToShoppingCart(product, counterValue, color.value, selectedSizes[0]));
+	};
+
 	return (
 		<>
-			{
-				!!product &&
-				<div className={'product-page'}>
-					<div className={'product-page-details'}>
-						<Row justify={"center"}>
+			{product && (
+				<div className="product-page">
+					<div className="product-page-details">
+						<Row justify="center">
 							<Col span={9}>
-								<ProductPagePhoto colors={product.colors} images={product.images}
+								<ProductPagePhoto
+									activeImage={activeImage}
+									setActiveImage={setActiveImage}
+									colors={product.colors}
+									images={product.images}
 									color={color}
-									setColor={setColor} />
+									setColor={setColor}
+								/>
 							</Col>
-							<Col span={9} className={'product-page-details-properties'}>
-								<h1 className={'product-page-title'}>
-									{product.name}
-								</h1>
-								<Space size={"large"} direction={"vertical"}>
-									<p className={'product-page-property-name'}>
-										Select Color
-									</p>
+							<Col span={9} className="product-page-details-properties">
+								<h1 className="product-page-title">{product.name}</h1>
+								<Space size="large" direction="vertical">
+									<p className="product-page-property-name">Select Color</p>
 									<Space>
-										{
-											product.colors.map((value, index) => <ColorBox oneColor
+										{product.colors.map((value, index) => (
+											<ColorBox
+												oneColor
 												setColorValues={setColor}
 												colorValues={color}
 												key={index}
 												color={{
 													value: value,
-													active: false
-												}} />)
-										}
+													active: false,
+												}}
+											/>
+										))}
 									</Space>
 								</Space>
-								<Space size={"large"} direction={"vertical"}>
-									<Row justify={"space-between"}>
-										<p className={'product-page-property-name'}>
-											Select size (Inches) </p>
-										<p className={'product-page-property-link'}>Size guide</p>
+								<Space size="large" direction="vertical">
+									<Row justify="space-between">
+										<p className="product-page-property-name">Select size (Inches) </p>
+										<p className="product-page-property-link">Size guide</p>
 									</Row>
-
 									<Space>
-										<SizesContainer setSizesState={setSizesState} sizesState={sizesState}
-											dataProductPage={product.sizes} />
+										<SizesContainer
+											selectedSizes={selectedSizes}
+											setSelectedSizes={setSelectedSizes}
+											dataProductPage={product.sizes}
+										/>
 									</Space>
 								</Space>
-								<Space size={"large"} align={"start"}>
-									<Space size={"large"} direction={"vertical"}>
-										<p className={'product-page-property-name'}>
-											Quantity
-										</p>
+								<Space size="large" align="start">
+									<Space size="large" direction="vertical">
+										<p className="product-page-property-name">Quantity</p>
 										<Counter counterValue={counterValue} setCounterValue={setCounterValue} />
 									</Space>
-									<Space size={"large"} direction={"vertical"}>
-										<p className={'product-page-property-name'}>
-											price total
-										</p>
-										<p className={'product-page-property-price'}>
+									<Space size="large" direction="vertical">
+										<p className="product-page-property-name">price total</p>
+										<p className="product-page-property-price">
 											{(counterValue * product.price).toFixed(2)} EUR
 										</p>
 									</Space>
 								</Space>
-								<Space size={"large"}>
-									<Button
-										onClick={() => dispatch(addProductToShoppingCart(product, counterValue, color.value))}
-										type={'primary'}>Add to bag</Button>
-									<Button type={'icon'} icon={<HeartOutlined />}>Save</Button>
+								<Space size="large">
+									<Button onClick={() => dispatch(addProductToShoppingCart(product, counterValue, color.value))} type="primary">
+										Add to bag
+									</Button>
+									<Button type="icon" icon={<HeartOutlined />}>
+										Save
+									</Button>
 								</Space>
 							</Col>
 						</Row>
-						<Row justify={"center"}>
+						<Row justify="center">
 							<Col span={18}>
-								<CollapseBox description={description} title={'Details'} />
-								<CollapseBox description={description} title={'Other information'} />
-								<CollapseBox description={description} title={'Another tab'} />
+								<CollapseBox description={description} title="Details" />
+								<CollapseBox description={description} title="Other information" />
+								<CollapseBox description={description} title="Another tab" />
 							</Col>
 						</Row>
 					</div>
@@ -127,11 +150,11 @@ const ProductPage = () => {
 								pageSize: 5,
 								simple: true,
 								total: 10,
-								responsive: true
+								responsive: true,
 							}}
 							grid={{
 								column: 5,
-								gutter: 20
+								gutter: 20,
 							}}
 							dataSource={products}
 							renderItem={(value, index) => (
@@ -144,9 +167,8 @@ const ProductPage = () => {
 						/>
 					</Row>
 				</div>
-			}
+			)}
 		</>
-
 	);
 };
 
