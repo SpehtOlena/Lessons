@@ -3,6 +3,8 @@ import { GET_PRODUCT, GET_PRODUCTS, EDIT_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT
 
 const URL = 'https://fake-server-blush.vercel.app//'
 
+// https://fake-server-blush.vercel.app/
+
 export function axiosRequest(data, namePage, request) {
 	const httpRequest = request.toLowerCase();
 	switch (request) {
